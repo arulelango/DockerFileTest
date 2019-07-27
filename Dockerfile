@@ -1,10 +1,4 @@
-pipeline {
-    agent { docker { image 'maven:3.3.3' } }
-    stages {
-        stage('build') {
-            steps {
-                sh 'mvn --version'
-            }
-        }
-    }
-}
+FROM alpine:3.4
+RUN apk add --no-cache nginx
+RUN mkdir /run/nginx
+CMD ["nginx", "-g", "daemon off;"]
